@@ -71,58 +71,53 @@ function debugBar(CONFIG) {
                 label: 'Listeners'
             });
 
-            that.registerPlugin('DOMObjectCount', function() {
-                return document.all.length;
-            }, {
-                label: 'DOM objects'
-            });
+            that.registerPlugin('DOMObjectCount', function () {
+                    return document.all.length;
+                }, {
+                    label: 'DOM objects',
+                    icon: 'adb-icon-home'
+                });
 
-            that.registerPlugin('loadTime', function() {
-                return (PERFORMANCE.timing.loadEventStart - PERFORMANCE.timing.navigationStart);
-            }, {
-                label: 'Load time',
-                unit: 'ms'
-            });
+                that.registerPlugin('loadTime', function () {
+                    return (PERFORMANCE.timing.loadEventStart - PERFORMANCE.timing.navigationStart);
+                }, {
+                    label: 'Load time',
+                    unit: 'ms'
+                });
 
-            that.registerPlugin('latency', function() {
-                return (PERFORMANCE.timing.responseStart - PERFORMANCE.timing.connectStart);
-            }, {
-                label: 'Latency',
-                unit: 'ms'
-            });
+                that.registerPlugin('latency', function () {
+                    return (PERFORMANCE.timing.responseStart - PERFORMANCE.timing.connectStart);
+                }, {
+                    label: 'Latency',
+                    unit: 'ms'
+                });
 
-            that.registerPlugin('numberOfRequests', function() {
-                if ('getEntriesByType' in window.performance) {
-                    return window.performance.getEntriesByType('resource').length;
-                }
-                return 'N/A';
-            }, {
-                label: 'Number of requests'
-            });
+                that.registerPlugin('cssFilesCount', function () {
+                    return document.querySelectorAll('link[rel="stylesheet"]').length;
+                }, {
+                    label: 'CSS files'
+                });
 
-            that.registerPlugin('webServiceURL', function() {
-                // return CONFIG.value.wsurl.replace('https://', '').replace('.apps-np.homedepot.com', '').replace('.homedepot.com:8070', '');
-            }, {
-                label: 'WebService URL'
-            });
+                that.registerPlugin('jsFilesCount', function () {
+                    return document.querySelectorAll('script').length;
+                }, {
+                    label: 'JS files'
+                });
 
-            that.registerPlugin('myProDeskVersion', function() {
-                return AppVersion;
-            }, {
-                label: 'MyProDesk Version'
-            });
+                that.registerPlugin('imagesCount', function () {
+                    return document.querySelectorAll('img').length;
+                }, {
+                    label: 'Images'
+                });
 
-            that.registerPlugin('ngVersion', function() {
-                return angular.version.full;
-            }, {
-                label: 'Angular Version'
-            });
-
-            that.registerPlugin('testCoverage', function() {
-                return 'Test Coverage';
-            }, {
-                // label: CONFIG.value.projectInfo.hostName === "myprodesk-dev" ? '<a href="http://localhost.homedepot.com:3001/coverage" target="_blank">Check TDD</a>' : 'NA'
-            });
+                that.registerPlugin('numberOfRequests', function () {
+                    if ('getEntriesByType' in window.performance) {
+                        return window.performance.getEntriesByType('resource').length
+                    }
+                    return 'N/A';
+                }, {
+                    label: 'Number of requests'
+                });
         };
 
     angular.extend(PluginAbstract.prototype, {
